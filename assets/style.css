@@ -1,0 +1,33 @@
+/* #searchSide {
+    float: left;
+}
+
+#todayForecast {
+    float: right;
+}
+
+#fiveDayForecast {
+    float: right;
+} */
+
+#body {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 100px 100px;
+    gap: 10px;
+}
+
+#searchSide {
+    grid-column: 1;
+    grid-row: 1 / 3;
+}
+
+#todayForecast {
+    grid-column: 2 / 4;
+    grid-row: 1;
+}
+
+#fiveDayForecast {
+    grid-column: 2/4;
+    grid-row: 2;
+}
