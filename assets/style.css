@@ -20,6 +20,7 @@
 #searchSide {
     grid-column: 1;
     grid-row: 1 / 3;
+    background-color: rgb(206, 221, 247);
 }
 
 #todayForecast {
@@ -30,4 +31,21 @@
 #fiveDayForecast {
     grid-column: 2/4;
     grid-row: 2;
+}
+
+body {
+    background-color: rgb(209, 226, 255);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#header {
+    text-align: center;
+}
+
+#cityName {
+    width: 100%;
+}
+
+#submitBtn {
+    width: 100%;
 }

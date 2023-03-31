@@ -42,6 +42,11 @@ function getWeather(event) {
         dateHeader.textContent = todaysDate;
         todayForecast.appendChild(dateHeader);
 
+        // //Adding icon Next to cityHeader
+        // var weatherIcon = document.createElement("img");
+        // weatherIcon.src = data.weather[0].icon;
+        // todayForecast.appendChild(weatherIcon);
+
         //Creating the variables for the data to be appended
         var locationTemp = document.createElement("h3");
         locationTemp.textContent = ("Temperature: " + data.main.temp + "°F");
@@ -58,7 +63,7 @@ function getWeather(event) {
         todayForecast.appendChild(locationHumidity);
 
         //Create a button in searchHistory section that links to all that saved in local storage
-        
+
 
 
 
