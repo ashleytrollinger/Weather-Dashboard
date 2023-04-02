@@ -7,13 +7,15 @@ var submitBtn = document.getElementById("submitBtn");
 var searchHistory = document.getElementById("searchHistory");
 var todayForecast = document.getElementById("todayForecast");
 var fiveDayForecast = document.getElementById("fiveDayForecast");
-
+var searchHistory = document.getElementById("searchHistory");
 
 
 function getWeather(event) {
     event.preventDefault()
     city = document.getElementById("cityName").value;
     var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&cnt=6&appid=" + APIkey;
+
+    //Wipe whatever is on the screen
 
     fetch(queryURL).then(response => {
         console.log(response);
@@ -26,6 +28,10 @@ function getWeather(event) {
         console.log("Temperature: " + data.list[0].main.temp);
         console.log("Wind Speed: " + data.list[0].wind.speed);
         console.log("Weather Icon: " + data.list[0].weather[0].icon);
+
+
+
+
 
         //Append the Location to the todayForecast section
         var cityHeader = document.createElement("h1");
@@ -68,7 +74,6 @@ function getWeather(event) {
         todayForecast.appendChild(locationWind);
         todayForecast.appendChild(locationHumidity);
 
-        //Create a button in searchHistory section that links to all that saved in local storage
 
         //Creating a for loop that goes over the index 1-5 of the list array and creates the five day forecast
         for (let i = 1; i < data.list.length; i++) {
@@ -96,18 +101,29 @@ function getWeather(event) {
             var weekHumidity = document.createElement("h4");
             weekHumidity.textContent = ("Humidity: " + data.list[i].main.humidity + "%");
 
+            var styleLine = document.createElement("hr");
+
 
             //Appending the data to the fiveDayForecast screen
 
             fiveDayForecast.appendChild(weekTemp);
             fiveDayForecast.appendChild(weekWind);
             fiveDayForecast.appendChild(weekHumidity);
-
+            fiveDayForecast.appendChild(styleLine);
         }
+        //Create the history 
+        localStorage.setItem("City name", data.city.name);
+        var historyBtn = document.createElement("button");
+        historyBtn.textContent = data.city.name;
+        historyBtn.id = 'historyBtn';
+        searchHistory.appendChild(historyBtn);
+
+
 
     })
 
 }
+
 
 
 
