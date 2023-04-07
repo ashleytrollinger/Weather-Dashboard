@@ -11,11 +11,21 @@ var searchHistory = document.getElementById("searchHistory");
 
 
 function getWeather(event) {
-    event.preventDefault()
+    event.preventDefault();
     city = document.getElementById("cityName").value;
+    loadWeather(city);
+
+}
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
+function loadWeather(city) {
     var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&cnt=6&appid=" + APIkey;
 
     //Wipe whatever is on the screen
+
 
     fetch(queryURL).then(response => {
         console.log(response);
@@ -29,18 +39,21 @@ function getWeather(event) {
         console.log("Wind Speed: " + data.list[0].wind.speed);
         console.log("Weather Icon: " + data.list[0].weather[0].icon);
 
-
-
-
+        removeAllChildNodes(todayForecast);
+        removeAllChildNodes(fiveDayForecast);
 
         //Append the Location to the todayForecast section
         var cityHeader = document.createElement("h1");
 
-
-
-
         cityHeader.textContent = data.city.name;
         todayForecast.appendChild(cityHeader);
+
+        //Creating the icon
+        var icon = document.createElement("img");
+        var iconCode = data.list[0].weather[0].icon;
+        icon.src = "http://openweathermap.org/img/w/" + iconCode + ".png";
+        todayForecast.appendChild(icon);
+
 
         //Creating the date
         const d = new Date();
@@ -78,9 +91,10 @@ function getWeather(event) {
         //Creating a for loop that goes over the index 1-5 of the list array and creates the five day forecast
         for (let i = 1; i < data.list.length; i++) {
             //Console logging the data to make sure this works
-            console.log("Temp: " + i + " " + data.list[i].main.temp);
-            console.log("Wind: " + i + " " + data.list[i].wind.speed);
-            console.log("Humidity: " + i + " " + data.list[i].main.humidity);
+            // console.log("Temp: " + i + " " + data.list[i].main.temp);
+            // console.log("Wind: " + i + " " + data.list[i].wind.speed);
+            // console.log("Humidity: " + i + " " + data.list[i].main.humidity);
+            // console.log ("Weather Icon: " + data.list[i].weather[0].icon)
 
             //Creating the date for the header of each day forecast
             var weekDates = todaysDay + i;
@@ -90,6 +104,12 @@ function getWeather(event) {
             var weekDatesHeader = document.createElement("h3");
             weekDatesHeader.textContent = weekFullDate;
             fiveDayForecast.appendChild(weekDatesHeader);
+
+            //Creating the icons and appending them
+            var weekIcon = document.createElement("img");
+            var weekIconCode = data.list[i].weather[0].icon
+            weekIcon.src = "http://openweathermap.org/img/w/" + weekIconCode + ".png"
+            fiveDayForecast.appendChild(weekIcon);
 
             //Creating the variables for the data to be appended
             var weekTemp = document.createElement("h4");
@@ -115,13 +135,16 @@ function getWeather(event) {
         localStorage.setItem("City name", data.city.name);
         var historyBtn = document.createElement("button");
         historyBtn.textContent = data.city.name;
+        historyBtn.addEventListener("click", function () {
+            loadWeather(data.city.name);
+        });
+
         historyBtn.id = 'historyBtn';
         searchHistory.appendChild(historyBtn);
 
 
 
     })
-
 }
 
 

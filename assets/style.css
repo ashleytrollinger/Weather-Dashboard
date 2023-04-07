@@ -51,20 +51,24 @@ body {
 #submitBtn {
     width: 100%;
     height: 8%;
-    font-size: 80%;
+    font-size: 105%;
 }
 
 /* Styling for the daily forecast section */
 
-#todayForecast h1{
+#todayForecast h1 {
+    font-size: 200%;
+    padding: 0;
+    margin: 0;
+}
 
+#todayForecast img {
+    float: right;
 }
-#todayForecast h2{
-    
-}
-#todayForecast h3{
-    
-}
+
+#todayForecast h2 {}
+
+#todayForecast h3 {}
 
 
 
@@ -85,13 +89,19 @@ body {
     padding: 1%;
 }
 
+#fiveDayForecast img {
+    float: right;
+}
 
 
 
+/* Setting the styling for the tabs that will appear in the history tab */
 
 #historyBtn {
     background: none !important;
     border: none;
     padding: none !important;
-
+    width: 100%;
+    height: 8%;
+    font-size: 105%;
 }
