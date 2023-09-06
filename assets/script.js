@@ -48,13 +48,6 @@ function loadWeather(city) {
         cityHeader.textContent = data.city.name;
         todayForecast.appendChild(cityHeader);
 
-        //Creating the icon
-        var icon = document.createElement("img");
-        var iconCode = data.list[0].weather[0].icon;
-        icon.src = "http://openweathermap.org/img/w/" + iconCode + ".png";
-        todayForecast.appendChild(icon);
-
-
         //Creating the date
         const d = new Date();
         var todaysMonth = d.getMonth() + 1;
@@ -66,6 +59,13 @@ function loadWeather(city) {
         var dateHeader = document.createElement("h2");
         dateHeader.textContent = todaysDate;
         todayForecast.appendChild(dateHeader);
+
+        //Creating the icon
+        var icon = document.createElement("img");
+        var iconCode = data.list[0].weather[0].icon;
+        icon.src = "http://openweathermap.org/img/w/" + iconCode + ".png";
+        todayForecast.appendChild(icon);
+
 
         // //Adding icon Next to cityHeader
         // var weatherIcon = document.createElement("img");
@@ -121,7 +121,7 @@ function loadWeather(city) {
             var weekHumidity = document.createElement("h4");
             weekHumidity.textContent = ("Humidity: " + data.list[i].main.humidity + "%");
 
-            var styleLine = document.createElement("hr");
+
 
 
             //Appending the data to the fiveDayForecast screen
@@ -129,7 +129,7 @@ function loadWeather(city) {
             fiveDayForecast.appendChild(weekTemp);
             fiveDayForecast.appendChild(weekWind);
             fiveDayForecast.appendChild(weekHumidity);
-            fiveDayForecast.appendChild(styleLine);
+
         }
         //Create the history 
         localStorage.setItem("City name", data.city.name);
