@@ -6,3 +6,6 @@ This application was created to work on demonstrating and understanding the use 
 
 ## Technologies Used
 HTML, CSS, JavaScript, Openweathermap.org
+
+## Noted Updates
+As of 9/6/2023 I have been dedicating time to go back and polish old challenges to display on my personal portfolio, <a>https://portfolio-cnbfgvroh-ashleytrollinger.vercel.app/</a>
